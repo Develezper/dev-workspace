@@ -14,20 +14,33 @@ Representar y procesar en TypeScript las entidades:
 
 Toda la lógica se ejecuta en consola, sin backend ni base de datos.
 
+## Arquitectura
+
+Se usa una estructura modular por responsabilidades (separation of concerns):
+
+- `src/domain`: tipos del dominio
+- `src/data`: datos de ejemplo (seed)
+- `src/reports`: lógica de reportes
+- `src/utils`: utilidades compartidas
+- `src/index.ts`: punto de entrada (orquestación)
+
 ## Estructura
 
-El código está en:
-
-- `src/index.ts`
-
-Incluye:
-
-- Tipos explícitos (sin `any`)
-- Union types
-- Tipos literales
-- Tuplas
-- Datos de ejemplo coherentes
-- Reportes en consola
+```txt
+src/
+  index.ts
+  domain/
+    types.ts
+  data/
+    seed.ts
+  reports/
+    team.report.ts
+    prs.report.ts
+    issues.report.ts
+    alerts.report.ts
+  utils/
+    format.ts
+```
 
 ## Reportes implementados
 
@@ -55,8 +68,8 @@ Incluye:
 
 ## Requisitos
 
-- Node.js instalado
-- TypeScript (se instala con dependencias del proyecto)
+- Bun instalado
+- TypeScript disponible en el proyecto
 
 ## Instalación
 
@@ -64,16 +77,22 @@ Incluye:
 npm install
 ```
 
+## Ejecutar en tiempo real (Bun)
+
+```bash
+bun --watch src/index.ts
+```
+
+## Validar tipos en paralelo (opcional)
+
+```bash
+bunx tsc --noEmit --watch
+```
+
 ## Compilar
 
 ```bash
 npm run build
-```
-
-## Ejecutar
-
-```bash
-npm run dev
 ```
 
 ## Estado del proyecto
