@@ -1,16 +1,16 @@
-import type { Desarrollador } from "../domain/types";
-import { encabezado, separador } from "../utils/format";
+import type { Developer } from "../domain/types";
+import { heading, separator } from "../utils/format";
 
-export function reporteEquipo(lista: Desarrollador[]): void {
-  encabezado("Estos son los dev en la compania:");
+export function teamReport(list: Developer[]): void {
+  heading("Team members:");
 
-  lista.forEach((desarrollador) => {
-    const estadoActivo = desarrollador.activo ? "Activo" : "Inactivo";
-    console.log(`Nombre: ${desarrollador.nombre}`);
-    console.log(`Rol: ${desarrollador.rol}`);
-    console.log(`Seniority: ${desarrollador.seniority}`);
-    console.log(`Numero de tecnologias: ${desarrollador.tecnologias.length}`);
-    console.log(`Estado: ${estadoActivo}`);
-    separador();
+  list.forEach((developer) => {
+    const activeStatus = developer.active ? "Active" : "Inactive";
+    console.log(`Name: ${developer.name}`);
+    console.log(`Role: ${developer.role}`);
+    console.log(`Seniority: ${developer.seniority}`);
+    console.log(`Number of technologies: ${developer.technologies.length}`);
+    console.log(`Status: ${activeStatus}`);
+    separator();
   });
 }

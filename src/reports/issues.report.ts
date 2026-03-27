@@ -1,28 +1,28 @@
-import type { EstadoIssue, Issue } from "../domain/types";
-import { encabezado, separador } from "../utils/format";
+import type { Issue, IssueStatus } from "../domain/types";
+import { heading, separator } from "../utils/format";
 
-export function reporteIssues(lista: Issue[]): void {
-  encabezado("Estos son los issues que tuvimos en el proyecto:");
+export function issuesReport(list: Issue[]): void {
+  heading("Issues:");
 
-  const porEstado: Record<EstadoIssue, number> = {
-    abierto: 0,
-    "en progreso": 0,
-    resuelto: 0,
-    cerrado: 0,
+  const byStatus: Record<IssueStatus, number> = {
+    open: 0,
+    "in progress": 0,
+    resolved: 0,
+    closed: 0,
   };
 
   let bugs = 0;
-  let mejoras = 0;
+  let improvements = 0;
 
-  lista.forEach((issue) => {
-    porEstado[issue.estado] += 1;
-    if (issue.tipo === "bug") bugs += 1;
-    if (issue.tipo === "mejora") mejoras += 1;
+  list.forEach((issue) => {
+    byStatus[issue.status] += 1;
+    if (issue.type === "bug") bugs += 1;
+    if (issue.type === "improvement") improvements += 1;
   });
 
-  console.log("Issues por estado:");
-  console.log(porEstado);
+  console.log("Issues by status:");
+  console.log(byStatus);
   console.log(`Bugs: ${bugs}`);
-  console.log(`Mejoras: ${mejoras}`);
-  separador();
+  console.log(`Improvements: ${improvements}`);
+  separator();
 }

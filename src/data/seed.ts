@@ -1,76 +1,76 @@
 import type {
-  Desarrollador,
-  EquipoProyecto,
+  Developer,
   Issue,
-  Proyecto,
+  Project,
+  ProjectTeam,
   PullRequest,
-  Repositorio,
+  Repository,
 } from "../domain/types";
 
-const ana: Desarrollador = {
-  nombre: "Ana Torres",
-  rol: "backend",
+const ana: Developer = {
+  name: "Ana Torres",
+  role: "backend",
   seniority: "senior",
-  tecnologias: ["Node.js", "TypeScript", "PostgreSQL"],
-  disponibilidad: true,
-  activo: true,
+  technologies: ["Node.js", "TypeScript", "PostgreSQL"],
+  availability: true,
+  active: true,
 };
 
-const luis: Desarrollador = {
-  nombre: "Luis Rojas",
-  rol: "frontend",
-  seniority: "semi-senior",
-  tecnologias: ["React", "TypeScript", "CSS"],
-  disponibilidad: true,
-  activo: true,
+const luis: Developer = {
+  name: "Luis Rojas",
+  role: "frontend",
+  seniority: "mid",
+  technologies: ["React", "TypeScript", "CSS"],
+  availability: true,
+  active: true,
 };
 
-const marta: Desarrollador = {
-  nombre: "Marta Gil",
-  rol: "devops",
+const marta: Developer = {
+  name: "Marta Gil",
+  role: "devops",
   seniority: "senior",
-  tecnologias: ["Docker", "GitHub Actions", "AWS"],
-  disponibilidad: false,
-  activo: false,
+  technologies: ["Docker", "GitHub Actions", "AWS"],
+  availability: false,
+  active: false,
 };
 
-const diego: Desarrollador = {
-  nombre: "Diego Peña",
-  rol: "fullstack",
+const diego: Developer = {
+  name: "Diego Pena",
+  role: "fullstack",
   seniority: "junior",
-  tecnologias: ["TypeScript", "Node.js", "Vue"],
-  disponibilidad: true,
-  activo: true,
+  technologies: ["TypeScript", "Node.js", "Vue"],
+  availability: true,
+  active: true,
 };
 
-export const desarrolladores: EquipoProyecto = [ana, luis, marta, diego];
+export const developers: ProjectTeam = [ana, luis, marta, diego];
 
-export const repositorio: Repositorio = {
-  nombre: "plataforma-gestion-tecnica",
-  url: "https://github.com/empresa/plataforma-gestion-tecnica",
-  ramaPrincipal: "main",
-  lenguajePrincipal: "TypeScript",
+export const repository: Repository = {
+  name: "technical-management-platform",
+  url: "https://github.com/company/technical-management-platform",
+  mainBranch: "main",
+  primaryLanguage: "TypeScript",
 };
 
 export const issues: Issue[] = [
-  { id: 1, titulo: "Error al crear PR", tipo: "bug", prioridad: "alta", estado: "abierto", asignadoA: ana },
-  { id: 2, titulo: "Mejorar filtro de issues", tipo: "mejora", prioridad: "media", estado: "en progreso", asignadoA: luis },
-  { id: 3, titulo: "Timeout en pipeline CI", tipo: "bug", prioridad: "critica", estado: "abierto", asignadoA: null },
-  { id: 4, titulo: "Agregar tags por prioridad", tipo: "mejora", prioridad: "baja", estado: "resuelto", asignadoA: diego },
-  { id: 5, titulo: "Validar reviewers duplicados", tipo: "bug", prioridad: "media", estado: "cerrado", asignadoA: ana },
+  { id: 1, title: "Error while creating pull request", type: "bug", priority: "high", status: "open", assignedTo: ana },
+  { id: 2, title: "Improve issue filters", type: "improvement", priority: "medium", status: "in progress", assignedTo: luis },
+  { id: 3, title: "CI pipeline timeout", type: "bug", priority: "critical", status: "open", assignedTo: null },
+  { id: 4, title: "Add priority tags", type: "improvement", priority: "low", status: "resolved", assignedTo: diego },
+  { id: 5, title: "Validate duplicated reviewers", type: "bug", priority: "medium", status: "closed", assignedTo: ana },
 ];
 
 export const pullRequests: PullRequest[] = [
-  { id: 101, titulo: "feat: módulo de issues", estado: "abierto", autor: diego, reviewers: [ana, luis], lineasDeCodigo: 420 },
-  { id: 102, titulo: "fix: manejo de estados en PR", estado: "aprobado", autor: ana, reviewers: [luis], lineasDeCodigo: 180 },
-  { id: 103, titulo: "refactor: pipeline de despliegue", estado: "rechazado", autor: marta, reviewers: [ana, diego], lineasDeCodigo: 510 },
-  { id: 104, titulo: "chore: limpieza de tipos", estado: "mergeado", autor: luis, reviewers: [ana], lineasDeCodigo: 95 },
+  { id: 101, title: "feat: issues module", status: "open", author: diego, reviewers: [ana, luis], linesOfCode: 420 },
+  { id: 102, title: "fix: pull request status handling", status: "approved", author: ana, reviewers: [luis], linesOfCode: 180 },
+  { id: 103, title: "refactor: deployment pipeline", status: "rejected", author: marta, reviewers: [ana, diego], linesOfCode: 510 },
+  { id: 104, title: "chore: clean up types", status: "merged", author: luis, reviewers: [ana], linesOfCode: 95 },
 ];
 
-export const proyecto: Proyecto = {
-  nombre: "Gestión Técnica Interna",
-  repositorio,
-  listaDeIssues: issues,
-  listaDePullRequests: pullRequests,
-  equipoDeDesarrolladores: desarrolladores,
+export const project: Project = {
+  name: "Internal Technical Management",
+  repository,
+  issues,
+  pullRequests,
+  team: developers,
 };

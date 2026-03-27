@@ -1,50 +1,50 @@
-export type RolDesarrollador = "backend" | "frontend" | "fullstack" | "devops" | "mobile" | "qa";
-export type Seniority = "junior" | "semi-senior" | "senior" | "lead";
-export type EstadoPullRequest = "abierto" | "aprobado" | "rechazado" | "mergeado";
-export type TipoIssue = "bug" | "mejora";
-export type PrioridadIssue = "baja" | "media" | "alta" | "critica";
-export type EstadoIssue = "abierto" | "en progreso" | "resuelto" | "cerrado";
+export type DeveloperRole = "backend" | "frontend" | "fullstack" | "devops" | "mobile" | "qa";
+export type Seniority = "junior" | "mid" | "senior" | "lead";
+export type PullRequestStatus = "open" | "approved" | "rejected" | "merged";
+export type IssueType = "bug" | "improvement";
+export type IssuePriority = "low" | "medium" | "high" | "critical";
+export type IssueStatus = "open" | "in progress" | "resolved" | "closed";
 
-export type Desarrollador = {
-  nombre: string;
-  rol: RolDesarrollador;
+export type Developer = {
+  name: string;
+  role: DeveloperRole;
   seniority: Seniority;
-  tecnologias: string[];
-  disponibilidad: boolean;
-  activo: boolean;
+  technologies: string[];
+  availability: boolean;
+  active: boolean;
 };
 
-export type Repositorio = {
-  nombre: string;
+export type Repository = {
+  name: string;
   url: string;
-  ramaPrincipal: string;
-  lenguajePrincipal: string;
+  mainBranch: string;
+  primaryLanguage: string;
 };
 
 export interface PullRequest {
   id: number;
-  titulo: string;
-  estado: EstadoPullRequest;
-  autor: Desarrollador;
-  reviewers: Desarrollador[];
-  lineasDeCodigo: number;
+  title: string;
+  status: PullRequestStatus;
+  author: Developer;
+  reviewers: Developer[];
+  linesOfCode: number;
 }
 
 export interface Issue {
   id: number;
-  titulo: string;
-  tipo: TipoIssue;
-  prioridad: PrioridadIssue;
-  estado: EstadoIssue;
-  asignadoA: Desarrollador | null;
+  title: string;
+  type: IssueType;
+  priority: IssuePriority;
+  status: IssueStatus;
+  assignedTo: Developer | null;
 }
 
-export type EquipoProyecto = [Desarrollador, Desarrollador, Desarrollador, Desarrollador];
+export type ProjectTeam = [Developer, Developer, Developer, Developer];
 
-export type Proyecto = {
-  nombre: string;
-  repositorio: Repositorio;
-  listaDeIssues: Issue[];
-  listaDePullRequests: PullRequest[];
-  equipoDeDesarrolladores: EquipoProyecto;
+export type Project = {
+  name: string;
+  repository: Repository;
+  issues: Issue[];
+  pullRequests: PullRequest[];
+  team: ProjectTeam;
 };

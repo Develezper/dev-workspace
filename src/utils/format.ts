@@ -1,15 +1,15 @@
-import type { EstadoPullRequest } from "../domain/types";
+import type { PullRequestStatus } from "../domain/types";
 
-export function encabezado(texto: string): void {
-  console.log(texto);
+export function heading(text: string): void {
+  console.log(text);
 }
 
-export function separador(): void {
+export function separator(): void {
   console.log("---");
 }
 
-export function prefijoEstadoPR(estado: EstadoPullRequest): string {
-  if (estado === "aprobado") return "[APROBADO] ";
-  if (estado === "mergeado") return "[MERGEADO] ";
+export function pullRequestStatusPrefix(status: PullRequestStatus): string {
+  if (status === "approved") return "[APPROVED] ";
+  if (status === "merged") return "[MERGED] ";
   return "";
 }

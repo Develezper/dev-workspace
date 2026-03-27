@@ -1,16 +1,16 @@
 import type { PullRequest } from "../domain/types";
-import { encabezado, prefijoEstadoPR, separador } from "../utils/format";
+import { heading, pullRequestStatusPrefix, separator } from "../utils/format";
 
-export function reportePullRequests(lista: PullRequest[]): void {
-  encabezado("Estos son los pull requests del proyecto:");
+export function pullRequestsReport(list: PullRequest[]): void {
+  heading("Pull requests:");
 
-  lista.forEach((pr) => {
-    const destacado = prefijoEstadoPR(pr.estado);
+  list.forEach((pr) => {
+    const highlight = pullRequestStatusPrefix(pr.status);
 
-    console.log(`${destacado}Titulo: ${pr.titulo}`);
-    console.log(`Estado: ${pr.estado}`);
-    console.log(`Autor: ${pr.autor.nombre}`);
-    console.log(`Numero de reviewers: ${pr.reviewers.length}`);
-    separador();
+    console.log(`${highlight}Title: ${pr.title}`);
+    console.log(`Status: ${pr.status}`);
+    console.log(`Author: ${pr.author.name}`);
+    console.log(`Number of reviewers: ${pr.reviewers.length}`);
+    separator();
   });
 }

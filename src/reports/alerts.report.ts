@@ -1,44 +1,44 @@
-import type { Proyecto } from "../domain/types";
-import { encabezado, separador } from "../utils/format";
+import type { Project } from "../domain/types";
+import { heading, separator } from "../utils/format";
 
-export function reporteAlertas(proyectoActual: Proyecto): void {
-  encabezado("Estas son las alertas del proyecto:");
+export function alertsReport(project: Project): void {
+  heading("Project alerts:");
 
-  const limiteLineasPR = 400;
-  const limiteAsignaciones = 2;
+  const pullRequestLinesLimit = 400;
+  const assignmentsLimit = 2;
 
-  const prsGrandes = proyectoActual.listaDePullRequests.filter(
-    (pr) => pr.estado === "abierto" && pr.lineasDeCodigo > limiteLineasPR,
+  const largeOpenPRs = project.pullRequests.filter(
+    (pr) => pr.status === "open" && pr.linesOfCode > pullRequestLinesLimit,
   );
 
-  const issuesCriticosSinAsignar = proyectoActual.listaDeIssues.filter(
-    (issue) => issue.prioridad === "critica" && issue.asignadoA === null,
+  const unassignedCriticalIssues = project.issues.filter(
+    (issue) => issue.priority === "critical" && issue.assignedTo === null,
   );
 
-  const asignacionesPorDev: Record<string, number> = {};
-  proyectoActual.equipoDeDesarrolladores.forEach((dev) => {
-    asignacionesPorDev[dev.nombre] = 0;
+  const assignmentsByDeveloper: Record<string, number> = {};
+  project.team.forEach((developer) => {
+    assignmentsByDeveloper[developer.name] = 0;
   });
 
-  proyectoActual.listaDeIssues.forEach((issue) => {
-    if (issue.asignadoA) {
-      const actual = asignacionesPorDev[issue.asignadoA.nombre] ?? 0;
-      asignacionesPorDev[issue.asignadoA.nombre] = actual + 1;
+  project.issues.forEach((issue) => {
+    if (issue.assignedTo) {
+      const current = assignmentsByDeveloper[issue.assignedTo.name] ?? 0;
+      assignmentsByDeveloper[issue.assignedTo.name] = current + 1;
     }
   });
 
-  console.log("Alertas PR abiertos con demasiadas lineas:");
-  prsGrandes.forEach((pr) => console.log(`- ${pr.titulo} (${pr.lineasDeCodigo} lineas)`));
+  console.log("Open pull requests with too many lines:");
+  largeOpenPRs.forEach((pr) => console.log(`- ${pr.title} (${pr.linesOfCode} lines)`));
 
-  console.log("Alertas issues criticos sin asignar:");
-  issuesCriticosSinAsignar.forEach((issue) => console.log(`- ${issue.titulo}`));
+  console.log("Critical issues without assignee:");
+  unassignedCriticalIssues.forEach((issue) => console.log(`- ${issue.title}`));
 
-  console.log("Alertas desarrolladores con demasiadas asignaciones:");
-  Object.entries(asignacionesPorDev).forEach(([nombre, cantidad]) => {
-    if (cantidad > limiteAsignaciones) {
-      console.log(`- ${nombre}: ${cantidad} asignaciones`);
+  console.log("Developers with too many assignments:");
+  Object.entries(assignmentsByDeveloper).forEach(([name, count]) => {
+    if (count > assignmentsLimit) {
+      console.log(`- ${name}: ${count} assignments`);
     }
   });
 
-  separador();
+  separator();
 }

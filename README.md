@@ -1,30 +1,30 @@
-# Plataforma de Gestión Técnica (TypeScript)
+# Technical Management Platform (TypeScript)
 
-Modelado en memoria de una plataforma interna para la gestión técnica de proyectos de software.
+In-memory modeling of an internal platform for software project technical management.
 
-## Objetivo
+## Goal
 
-Representar y procesar en TypeScript las entidades:
+Represent and process these entities in TypeScript:
 
-- Desarrollador
-- Repositorio
+- Developer
+- Repository
 - Pull Request
 - Issue
-- Proyecto
+- Project
 
-Toda la lógica se ejecuta en consola, sin backend ni base de datos.
+All logic runs in the console, without backend or database.
 
-## Arquitectura
+## Architecture
 
-Se usa una estructura modular por responsabilidades (separation of concerns):
+This project uses a modular structure by responsibility (separation of concerns):
 
-- `src/domain`: tipos del dominio
-- `src/data`: datos de ejemplo (seed)
-- `src/reports`: lógica de reportes
-- `src/utils`: utilidades compartidas
-- `src/index.ts`: punto de entrada (orquestación)
+- `src/domain`: domain types
+- `src/data`: sample data (seed)
+- `src/reports`: reporting logic
+- `src/utils`: shared utilities
+- `src/index.ts`: entry point (orchestration)
 
-## Estructura
+## Structure
 
 ```txt
 src/
@@ -42,59 +42,59 @@ src/
     format.ts
 ```
 
-## Reportes implementados
+## Implemented reports
 
-1. Equipo
-- Nombre
-- Rol
+1. Team
+- Name
+- Role
 - Seniority
-- Número de tecnologías
+- Number of technologies
 
 2. Pull Requests
-- Título
-- Estado
-- Autor
-- Número de reviewers
-- Destacado visual para PR aprobados/mergeados
+- Title
+- Status
+- Author
+- Number of reviewers
+- Visual highlight for approved/merged PRs
 
 3. Issues
-- Cantidad por estado
-- Cantidad de bugs vs mejoras
+- Count of issues by status
+- Count of bugs vs improvements
 
-4. Alertas
-- PR abiertos con demasiadas líneas
-- Issues críticos sin asignar
-- Desarrolladores con demasiadas asignaciones
+4. Alerts
+- Open pull requests with too many lines
+- Critical unassigned issues
+- Developers with too many assignments
 
-## Requisitos
+## Requirements
 
-- Bun instalado
-- TypeScript disponible en el proyecto
+- Bun installed
+- TypeScript available in the project
 
-## Instalación
+## Installation
 
 ```bash
 npm install
 ```
 
-## Ejecutar en tiempo real (Bun)
+## Run in real time (Bun)
 
 ```bash
 bun --watch src/index.ts
 ```
 
-## Validar tipos en paralelo (opcional)
+## Type-check in parallel (optional)
 
 ```bash
 bunx tsc --noEmit --watch
 ```
 
-## Compilar
+## Build
 
 ```bash
 npm run build
 ```
 
-## Estado del proyecto
+## Project status
 
-El proyecto compila sin errores con `tsc` y cumple los requisitos del reto.
+The project compiles without errors using `tsc` and meets the challenge requirements.
